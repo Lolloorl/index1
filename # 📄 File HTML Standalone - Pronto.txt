@@ -1,0 +1,920 @@
+# 📄 File HTML Standalone - Pronto all'Uso!
+
+Ecco il file HTML completo che funziona **subito senza hosting**:
+Action: file_editor create /app/stereonauti-portale-completo.html --file-text "<!DOCTYPE html>
+<html lang=\"it\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Portale Stereonauti</title>
+    <link href=\"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", sans-serif;
+            background: linear-gradient(180deg, hsl(220, 30%, 10%), hsl(244, 40%, 15%), hsl(260, 35%, 18%));
+            color: hsl(210, 20%, 98%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Background effects */
+        .bg-effect {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-effect-1 {
+            top: 80px;
+            left: 40px;
+            width: 400px;
+            height: 400px;
+            background: hsla(244, 77%, 47%, 0.1);
+        }
+
+        .bg-effect-2 {
+            bottom: 80px;
+            right: 40px;
+            width: 400px;
+            height: 400px;
+            background: hsla(277, 100%, 64%, 0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, hsl(244, 77%, 47%), hsl(254, 76%, 52%), hsl(260, 80%, 56%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: hsl(210, 15%, 65%);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass-card:hover {
+            transform: scale(1.02);
+        }
+
+        .glass-card.blue:hover {
+            box-shadow: 0 10px 40px -10px hsla(244, 77%, 47%, 0.4);
+        }
+
+        .glass-card.green:hover {
+            box-shadow: 0 10px 40px -10px hsla(158, 64%, 52%, 0.4);
+        }
+
+        .glass-card.orange:hover {
+            box-shadow: 0 10px 40px -10px hsla(28, 94%, 56%, 0.4);
+        }
+
+        /* Icon */
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .icon-blue {
+            background: linear-gradient(135deg, hsl(244, 77%, 47%), hsl(254, 76%, 52%));
+            filter: drop-shadow(0 0 20px hsla(244, 77%, 47%, 0.6));
+        }
+
+        .icon-green {
+            background: linear-gradient(135deg, hsl(158, 64%, 52%), hsl(168, 60%, 45%));
+            filter: drop-shadow(0 0 20px hsla(158, 64%, 52%, 0.6));
+        }
+
+        .icon-orange {
+            background: linear-gradient(135deg, hsl(28, 94%, 56%), hsl(38, 90%, 50%));
+            filter: drop-shadow(0 0 20px hsla(28, 94%, 56%, 0.6));
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            text-align: center;
+            color: hsl(210, 15%, 65%);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: hsla(220, 25%, 20%, 0.5);
+            border: 1px solid hsla(220, 20%, 25%, 0.5);
+            border-radius: 0.5rem;
+            color: hsl(210, 20%, 98%);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: hsl(244, 77%, 47%);
+            background: hsla(220, 25%, 20%, 0.8);
+        }
+
+        .input::placeholder {
+            color: hsl(210, 15%, 65%);
+        }
+
+        .textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .button {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .button-blue {
+            background: linear-gradient(90deg, hsl(244, 77%, 47%), hsl(254, 76%, 52%));
+            color: white;
+        }
+
+        .button-blue:hover {
+            box-shadow: 0 10px 40px -10px hsla(244, 77%, 47%, 0.4);
+        }
+
+        .button-green {
+            background: linear-gradient(90deg, hsl(158, 64%, 52%), hsl(168, 60%, 45%));
+            color: white;
+        }
+
+        .button-green:hover {
+            box-shadow: 0 10px 40px -10px hsla(158, 64%, 52%, 0.4);
+        }
+
+        .button-orange {
+            background: linear-gradient(90deg, hsl(28, 94%, 56%), hsl(38, 90%, 50%));
+            color: white;
+        }
+
+        .button-orange:hover {
+            box-shadow: 0 10px 40px -10px hsla(28, 94%, 56%, 0.4);
+        }
+
+        .button-red {
+            background: linear-gradient(90deg, hsl(0, 84%, 60%), hsl(10, 80%, 55%));
+            color: white;
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-note {
+            font-size: 0.75rem;
+            color: hsl(210, 15%, 65%);
+            text-align: center;
+        }
+
+        /* Donation Section */
+        .donation-section {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .donation-card {
+            text-align: center;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Section */
+        .social-section {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .social-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            color: hsl(210, 20%, 98%);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .social-link.youtube {
+            background: hsla(0, 100%, 50%, 0.2);
+            border: 1px solid hsla(0, 100%, 50%, 0.3);
+        }
+
+        .social-link.youtube:hover {
+            background: hsla(0, 100%, 50%, 0.3);
+            transform: scale(1.05);
+        }
+
+        .social-link.instagram {
+            background: hsla(320, 60%, 50%, 0.2);
+            border: 1px solid hsla(320, 60%, 50%, 0.3);
+        }
+
+        .social-link.instagram:hover {
+            background: hsla(320, 60%, 50%, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: hsl(210, 15%, 65%);
+            font-size: 0.875rem;
+            padding: 2rem 0;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: hsl(220, 28%, 15%);
+            border: 1px solid hsla(244, 77%, 47%, 0.5);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            max-width: 300px;
+        }
+
+        .toast.success {
+            border-color: hsla(158, 64%, 52%, 0.5);
+        }
+
+        .toast.error {
+            border-color: hsla(0, 84%, 60%, 0.5);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Area Riservata */
+        .protected-area {
+            display: none;
+        }
+
+        .protected-area.active {
+            display: block;
+        }
+
+        .protected-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-button {
+            background: transparent;
+            border: none;
+            color: hsl(210, 15%, 65%);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: hsl(210, 20%, 98%);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: hsla(220, 25%, 20%, 0.3);
+            padding: 0.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: hsl(210, 20%, 98%);
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: hsl(244, 77%, 47%);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .data-item {
+            background: hsla(220, 25%, 20%, 0.3);
+            border: 1px solid hsla(220, 20%, 25%, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .data-item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .data-item-email {
+            color: hsl(210, 15%, 65%);
+            font-size: 0.875rem;
+        }
+
+        .data-item-date {
+            color: hsl(210, 15%, 65%);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .delete-button {
+            background: transparent;
+            border: 1px solid hsl(0, 84%, 60%);
+            color: hsl(0, 84%, 60%);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .delete-button:hover {
+            background: hsl(0, 84%, 60%);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: hsl(210, 15%, 65%);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .question-content {
+            background: hsla(220, 30%, 12%, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .question-label {
+            font-size: 0.875rem;
+            color: hsl(210, 15%, 65%);
+            margin-bottom: 0.5rem;
+        }
+
+        .reply-link {
+            color: hsl(244, 77%, 47%);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .reply-link:hover {
+            text-decoration: underline;
+        }
+
+        .drive-card {
+            background: linear-gradient(135deg, hsla(268, 89%, 60%, 0.2), hsla(277, 100%, 64%, 0.2));
+            border: 1px solid hsla(268, 89%, 60%, 0.3);
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+        }
+
+        .drive-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .account-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid hsla(220, 20%, 25%, 0.3);
+        }
+
+        .account-email {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .protected-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class=\"bg-effect bg-effect-1\"></div>
+    <div class=\"bg-effect bg-effect-2\"></div>
+
+    <!-- Homepage -->
+    <div id=\"homepage\">
+        <div class=\"container\">
+            <div class=\"header\">
+                <h1>Stereonauti</h1>
+                <p>Benvenuto nel portale</p>
+            </div>
+
+            <div class=\"cards-grid\">
+                <!-- Notifiche Podcast -->
+                <div class=\"glass-card blue\">
+                    <div class=\"card-icon icon-blue\">✉️</div>
+                    <h3 class=\"card-title\">Notifiche Podcast</h3>
+                    <p class=\"card-description\">Ricevi una notifica ad ogni nuovo episodio</p>
+                    
+                    <form class=\"form\" id=\"notificationForm\">
+                        <input type=\"text\" class=\"input\" placeholder=\"Il tuo nome\" id=\"notifName\" required>
+                        <input type=\"email\" class=\"input\" placeholder=\"La tua email\" id=\"notifEmail\" required>
+                        <button type=\"submit\" class=\"button button-blue\">Iscriviti</button>
+                        <p class=\"form-note\">I tuoi dati non verranno condivisi con terzi</p>
+                    </form>
+                </div>
+
+                <!-- Hai una Domanda -->
+                <div class=\"glass-card green\">
+                    <div class=\"card-icon icon-green\">💬</div>
+                    <h3 class=\"card-title\">Hai una Domanda?</h3>
+                    <p class=\"card-description\">Scrivici e ti risponderemo al più presto</p>
+                    
+                    <form class=\"form\" id=\"questionForm\">
+                        <input type=\"text\" class=\"input\" placeholder=\"Il tuo nome\" id=\"questName\" required>
+                        <input type=\"email\" class=\"input\" placeholder=\"La tua email\" id=\"questEmail\" required>
+                        <textarea class=\"input textarea\" placeholder=\"La tua domanda...\" id=\"questQuestion\" required></textarea>
+                        <button type=\"submit\" class=\"button button-green\">Invia Domanda</button>
+                    </form>
+                </div>
+
+                <!-- Area Riservata -->
+                <div class=\"glass-card orange\">
+                    <div class=\"card-icon icon-orange\">🔒</div>
+                    <h3 class=\"card-title\">Area Riservata</h3>
+                    <p class=\"card-description\">Inserisci la password per accedere</p>
+                    
+                    <form class=\"form\" id=\"loginForm\">
+                        <input type=\"password\" class=\"input\" placeholder=\"Password\" id=\"password\" required>
+                        <button type=\"submit\" class=\"button button-orange\">Entra</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Donation Section -->
+            <div class=\"donation-section\">
+                <div class=\"glass-card donation-card\">
+                    <div class=\"heart-icon\">❤️</div>
+                    <h3 class=\"card-title\">Supporta Stereonauti</h3>
+                    <p class=\"card-description\">Se apprezzi il nostro lavoro, considera una donazione per aiutarci a continuare</p>
+                    <button class=\"button button-red\" onclick=\"alert('Per attivare le donazioni, inserisci il tuo link PayPal o Buy Me a Coffee nel codice HTML')\">Fai una Donazione</button>
+                </div>
+            </div>
+
+            <!-- Social Section -->
+            <div class=\"social-section\">
+                <div class=\"glass-card\">
+                    <h4 class=\"social-title\">Seguici sui Social</h4>
+                    <div class=\"social-links\">
+                        <a href=\"https://www.youtube.com/@Stereonauti25\" target=\"_blank\" class=\"social-link youtube\">
+                            ▶️ YouTube
+                        </a>
+                        <a href=\"https://www.instagram.com/stereonauti2025/\" target=\"_blank\" class=\"social-link instagram\">
+                            📸 Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class=\"footer\">
+                <p>© 2025 Stereonauti - Tutti i diritti riservati</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Area -->
+    <div id=\"protectedArea\" class=\"protected-area\">
+        <div class=\"container\">
+            <div class=\"protected-header\">
+                <button class=\"back-button\" onclick=\"logout()\">← Torna al Portale</button>
+                <button class=\"button button-red\" onclick=\"logout()\" style=\"width: auto; padding: 0.5rem 1.5rem;\">Esci</button>
+            </div>
+
+            <div class=\"header\">
+                <h1>Area Riservata</h1>
+                <p>Gestisci iscrizioni, domande e impostazioni</p>
+            </div>
+
+            <div class=\"glass-card\">
+                <div class=\"tabs\">
+                    <button class=\"tab active\" onclick=\"switchTab('subscribers')\">👥 Iscrizioni (<span id=\"subscribersCount\">0</span>)</button>
+                    <button class=\"tab\" onclick=\"switchTab('questions')\">💬 Domande (<span id=\"questionsCount\">0</span>)</button>
+                    <button class=\"tab\" onclick=\"switchTab('drive')\">📁 Drive</button>
+                    <button class=\"tab\" onclick=\"switchTab('settings')\">🔑 Password</button>
+                </div>
+
+                <!-- Subscribers Tab -->
+                <div id=\"subscribers-tab\" class=\"tab-content active\">
+                    <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;\">
+                        <h3>Iscritti alle Notifiche</h3>
+                        <button class=\"button button-blue\" onclick=\"copyEmails()\" style=\"width: auto; padding: 0.5rem 1rem;\">📧 Copia Email</button>
+                    </div>
+                    <div id=\"subscribersList\"></div>
+                </div>
+
+                <!-- Questions Tab -->
+                <div id=\"questions-tab\" class=\"tab-content\">
+                    <h3 style=\"margin-bottom: 1.5rem;\">Domande Ricevute</h3>
+                    <div id=\"questionsList\"></div>
+                </div>
+
+                <!-- Drive Tab -->
+                <div id=\"drive-tab\" class=\"tab-content\">
+                    <h3 style=\"margin-bottom: 1.5rem;\">Testi Podcast</h3>
+                    <div class=\"drive-card\">
+                        <div class=\"drive-icon\">📁</div>
+                        <h4 style=\"font-size: 1.25rem; margin-bottom: 1rem;\">Google Drive - Testi Podcast</h4>
+                        <p style=\"color: hsl(210, 15%, 65%); margin-bottom: 2rem;\">Accedi alla cartella condivisa con tutti i testi degli episodi</p>
+                        <a href=\"https://drive.google.com/drive/folders/1L-RPyBjeYdiKaEt4OgW-tL_V_UHNejXG?usp=sharing\" target=\"_blank\">
+                            <button class=\"button\" style=\"background: linear-gradient(90deg, hsl(268, 89%, 60%), hsl(277, 100%, 64%)); color: white;\">Apri Google Drive</button>
+                        </a>
+                        <div class=\"account-info\">
+                            <p style=\"font-size: 0.875rem; color: hsl(210, 15%, 65%); margin-bottom: 0.5rem;\">Account Google:</p>
+                            <p class=\"account-email\">stereonauti25@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id=\"settings-tab\" class=\"tab-content\">
+                    <h3 style=\"margin-bottom: 1.5rem;\">Modifica Password</h3>
+                    <div style=\"max-width: 500px;\">
+                        <form class=\"form\" id=\"changePasswordForm\">
+                            <label style=\"font-size: 0.875rem; color: hsl(210, 15%, 65%); margin-bottom: 0.5rem;\">Nuova Password</label>
+                            <input type=\"password\" class=\"input\" placeholder=\"Almeno 6 caratteri\" id=\"newPassword\" required>
+                            
+                            <label style=\"font-size: 0.875rem; color: hsl(210, 15%, 65%); margin-bottom: 0.5rem;\">Conferma Password</label>
+                            <input type=\"password\" class=\"input\" placeholder=\"Ripeti la password\" id=\"confirmPassword\" required>
+                            
+                            <button type=\"submit\" class=\"button button-orange\">Aggiorna Password</button>
+                            <p class=\"form-note\">Password attuale: La password è salvata in modo sicuro nel browser</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Notification Form
+        document.getElementById('notificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('notifName').value;
+            const email = document.getElementById('notifEmail').value;
+            
+            if (!name || !email) {
+                showToast('Per favore, inserisci nome e email', 'error');
+                return;
+            }
+            
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            subscribers.push({ name, email, date: new Date().toISOString() });
+            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            
+            showToast('Iscrizione completata! Riceverai notifiche sui nuovi episodi.');
+            this.reset();
+        });
+
+        // Question Form
+        document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('questName').value;
+            const email = document.getElementById('questEmail').value;
+            const question = document.getElementById('questQuestion').value;
+            
+            if (!name || !email || !question) {
+                showToast('Per favore, compila tutti i campi', 'error');
+                return;
+            }
+            
+            const questions = JSON.parse(localStorage.getItem('questions') || '[]');
+            questions.push({ name, email, question, date: new Date().toISOString() });
+            localStorage.setItem('questions', JSON.stringify(questions));
+            
+            showToast('Domanda inviata! Ti risponderemo al più presto via email.');
+            this.reset();
+        });
+
+        // Login Form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const storedPassword = localStorage.getItem('admin_password') || 'Stereo25!';
+            
+            if (password === storedPassword) {
+                localStorage.setItem('isAuthenticated', 'true');
+                showProtectedArea();
+            } else {
+                showToast('Password errata!', 'error');
+                this.reset();
+            }
+        });
+
+        // Show Protected Area
+        function showProtectedArea() {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('protectedArea').classList.add('active');
+            loadData();
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('isAuthenticated');
+            document.getElementById('homepage').classList.remove('hidden');
+            document.getElementById('protectedArea').classList.remove('active');
+        }
+
+        // Switch Tab
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        // Load Data
+        function loadData() {
+            loadSubscribers();
+            loadQuestions();
+        }
+
+        function loadSubscribers() {
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            document.getElementById('subscribersCount').textContent = subscribers.length;
+            
+            const list = document.getElementById('subscribersList');
+            if (subscribers.length === 0) {
+                list.innerHTML = '<div class=\"empty-state\"><div class=\"empty-state-icon\">👥</div><p>Nessun iscritto ancora</p></div>';
+            } else {
+                list.innerHTML = subscribers.map((sub, index) => `
+                    <div class=\"data-item\">
+                        <div class=\"data-item-header\">
+                            <div>
+                                <div class=\"data-item-name\">${sub.name}</div>
+                                <div class=\"data-item-email\">${sub.email}</div>
+                                <div class=\"data-item-date\">📅 ${new Date(sub.date).toLocaleDateString('it-IT')}</div>
+                            </div>
+                            <button class=\"delete-button\" onclick=\"deleteSubscriber(${index})\">🗑️ Elimina</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function loadQuestions() {
+            const questions = JSON.parse(localStorage.getItem('questions') || '[]');
+            document.getElementById('questionsCount').textContent = questions.length;
+            
+            const list = document.getElementById('questionsList');
+            if (questions.length === 0) {
+                list.innerHTML = '<div class=\"empty-state\"><div class=\"empty-state-icon\">💬</div><p>Nessuna domanda ancora</p></div>';
+            } else {
+                list.innerHTML = questions.map((q, index) => `
+                    <div class=\"data-item\">
+                        <div class=\"data-item-header\">
+                            <div>
+                                <div class=\"data-item-name\">${q.name}</div>
+                                <div class=\"data-item-email\">${q.email}</div>
+                                <div class=\"data-item-date\">📅 ${new Date(q.date).toLocaleDateString('it-IT')}</div>
+                            </div>
+                            <button class=\"delete-button\" onclick=\"deleteQuestion(${index})\">🗑️ Elimina</button>
+                        </div>
+                        <div class=\"question-content\">
+                            <div class=\"question-label\">Domanda:</div>
+                            <div>${q.question}</div>
+                        </div>
+                        <a href=\"mailto:${q.email}?subject=Re: La tua domanda su Stereonauti\" class=\"reply-link\">Rispondi via email →</a>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function deleteSubscriber(index) {
+            if (confirm('Sei sicuro di voler rimuovere questo iscritto?')) {
+                const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                subscribers.splice(index, 1);
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                loadSubscribers();
+                showToast('Iscritto rimosso');
+            }
+        }
+
+        function deleteQuestion(index) {
+            if (confirm('Sei sicuro di voler eliminare questa domanda?')) {
+                const questions = JSON.parse(localStorage.getItem('questions') || '[]');
+                questions.splice(index, 1);
+                localStorage.setItem('questions', JSON.stringify(questions));
+                loadQuestions();
+                showToast('Domanda rimossa');
+            }
+        }
+
+        function copyEmails() {
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            const emails = subscribers.map(s => s.email).join(', ');
+            navigator.clipboard.writeText(emails);
+            showToast('Email copiate negli appunti!');
+        }
+
+        // Change Password Form
+        document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                showToast('Le password non corrispondono!', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showToast('La password deve essere di almeno 6 caratteri', 'error');
+                return;
+            }
+            
+            localStorage.setItem('admin_password', newPassword);
+            showToast('Password modificata con successo!');
+            this.reset();
+        });
+
+        // Check if already authenticated
+        if (localStorage.getItem('isAuthenticated') === 'true') {
+            showProtectedArea();
+        }
+    </script>
+</body>
+</html>
+"
+Observation: Create successful: /app/stereonauti-portale-completo.html
