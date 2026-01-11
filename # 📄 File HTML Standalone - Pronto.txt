@@ -1,4 +1,4 @@
-# 📄 File HTML Standalone - Pronto all'Uso!
+# 📄 prova!
 
 Ecco il file HTML completo che funziona **subito senza hosting**:
 Action: file_editor create /app/stereonauti-portale-completo.html --file-text "<!DOCTYPE html>
@@ -917,4 +917,5 @@ Action: file_editor create /app/stereonauti-portale-completo.html --file-text "<
 </body>
 </html>
 "
+
 Observation: Create successful: /app/stereonauti-portale-completo.html
